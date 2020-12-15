@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Chatroom</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.js" integrity="sha256-DrT5NfxfbHvMHux31Lkhxg42LY6of8TaYyK50jnxRnM=" crossorigin="anonymous"></script>
+    <href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="chat-container">
+            <div class="chat-box-header">
+                <div class="user-info">
+                    <div class="avatar">
+                        <img src="https://visualpharm.com/assets/387/Person-595b40b75ba036ed117da139.svg" alt="card-img" >
+                    </div>
+                    <div class="user">
+                        <b><%= name %></b>
+                        <span class="last-active-time">Truy cập 1 giờ trước</span>
+                    </div>
+                </div>
+                <div class="group-btn-call">
+                    <button id="btn-voice-call"><img src="https://cdn1.iconfinder.com/data/icons/free-98-icons/32/call-512.png" alt=""></button>
+                    <button id="btn-video-call"><img src="https://cdn1.iconfinder.com/data/icons/ios-11-glyphs/30/video_call-512.png" alt=""></button>
+                </div>
+            </div>
+            <div class="chat-box-body">
+                <div class="chat-area">
+                    <div class="message-line">
+                        <div class="message right">
+                            hellofsdfsdf 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-box-footer">
+                <div class="attachment">
+                    <button id="image-attachment" onclick="document.getElementById('image-input').click();">
+                        <input id="image-input" type="file" name="name" style="display: none;" />
+                        <img src="https://icon-library.net/images/img-icon/img-icon-14.jpg" alt="">
+                    </button>
+                    <button id="file-attachment">
+                        <img src="https://icon-library.net/images/attachment-icon-png/attachment-icon-png-15.jpg" alt="">
+                    </button>
+                </div>
+                <div class="input-message-area">
+                    <input placeholder="Nhập tin nhắn" type="text" id="txt-message">
+                    <button id="btn-send"><img src="https://www.searchpng.com/wp-content/uploads/2019/02/Send-Icon-PNG-715x657.png" alt=""></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

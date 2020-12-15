@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/upload.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <img src ="" class="img-rounded img-responsive" id="canvas"></img>
+
+    <!-- image upload -->
+          <form id        =  "uploadForm"
+         enctype   =  "multipart/form-data"
+         action    =  "/photo"
+         method    =  "post"
+    >
+    <div class="input-group "> 
+       <div tabindex="100" class=" file-caption  kv-fileinput-caption">
+       <div class="file-caption-name" title=""></div>
+    </div>
+    
+       <div class="input-group-btn">
+    
+           <div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; <span class="hidden-xs">Browse …</span><input id="input-1" type="file" name="userPhoto" class="file"></div>
+    
+    
+           <button id="upload-btn" type="submit" name="submit" tabindex="500" title="Upload selected files" class="btn btn-default fileinput-upload fileinput-upload-button"><i class="glyphicon glyphicon-upload"></i> <span class="hidden-xs">Upload</span></button>
+    
+    
+       </div>
+    </div>
+    
+    </form>
+</body>
+</html>
