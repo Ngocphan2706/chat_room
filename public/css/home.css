@@ -39,10 +39,17 @@ button > i{
     height: 100%;
     cursor: pointer;
 }
-.user{
+
+.chat-box-header{
     background-color: #EEEBEB;
-    height: 800px;
+    width: 100%;
 }
+
+.user-info{
+    display: inline;
+    float: left;
+}
+
 .avatar{
     height:80px;
     width: 80px;
@@ -65,16 +72,250 @@ button > i{
     color: rgb(116, 116, 116);
 }
 .chat-box-body{
-    width: 1000000px;
-    height: 580px;
+    width: 100%;
+    height: 630px;
     overflow: auto;
     /* white-space: nowrap; */
 }
+/* --------------------------------------------------------------------- */
 
-
-.chat{
-
+.online-user-group{
+    width: 100%;
+    padding-top: 20px;
+    border-top: solid 1px #575757;
 }
-.fri{
+.online-user-group >span{
+    font-size: 15px;
+    color: black;
+}
+.online-user-group .online-box-scroll{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width:100%;
+    height:70px;
+}
+
+.online-user-group .online-box{
+    min-width: 100px;
+    width: 1000px;
+    display: inline-block;
+    height: 100%;
+}
+
+.online-user-group .online-box-scroll .online-box .online-user{
+    display: inline;
+    width: 50px;
+    height: 50px;
+    border-radius:25px;
+    margin-right: 10px;
+    float: left;
+}
+/* ---------------------------------------------------------- */
+
+.list-inbox{
+    margin-top: 30px;
+    width: 100%;
+    border-top:solid 1px #000000;
+    padding-top: 20px;
+    height: 420px;
     
 }
+.list-inbox  > span{
+    font-size: 20px;
+    color: black;
+    padding-bottom: 30px;
+}
+
+.list-inbox .list-inbox-scroll{
+    height: 100%;
+    overflow: auto;
+}
+
+.list-inbox .list-inbox-scroll b {
+    display: block;
+    font-size: 18px;
+}
+
+.list-inbox .list-inbox-scroll .list-box .list-ib-item{
+    margin: 0 auto;
+    width: 95%;
+    border-bottom: solid 1px #747171;
+    padding-bottom: 60px;
+    margin-bottom: 20px;
+    display: block;
+    clear: both;
+}
+.list-inbox .list-inbox-scroll .list-ib-item img{
+    width: 50px;
+    height: 50px;
+    border-radius:25px;
+    float: left;
+    margin-right: 15px;
+}
+
+.list-inbox .list-inbox-scroll .list-ib-item .text{
+    display: inline;
+    float: left;
+}
+/* ---------------------------------------------------------------------- */
+.chat-container{
+    width:100%;
+    height: 100%;
+   
+}
+
+.chat-box-header{
+    width: 100%;
+    height: 85px;
+}
+
+.user >span{
+    font-size:15px;
+}
+.user > b{
+    font-size: 25px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.user > span{
+    display: block;
+    color: rgb(116, 116, 116);
+}
+
+.group-btn-call{
+    display: block;
+    float: right;
+    margin: 10px 20px;
+}
+.group-btn-call button{
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+button{
+    /* width: 50px;
+    height: 50px; */
+    border: none !important;
+    background-color: rgba(255, 222, 173, 0);
+}
+
+button:focus, input:focus{
+    border: none;
+    outline: none;
+}
+
+button:hover{
+    background-color: rgb(210, 210, 210);
+}
+
+button > img{
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.chat-area > textarea{
+    width: 100%;
+    height: 580px;
+    display: block;
+    
+}
+
+.chat-box-footer{
+    width: 100%;
+    background-color: #EEEBEB;
+}
+
+.attachment{
+    /* padding-left: 20px;
+    width: 100%;
+    padding-top: 10px;
+    border-top: rgb(116, 116, 116) solid 1px; */
+    float: left;
+}
+
+.input-message-area{
+    width: 100%;
+    padding: 20px 5px;
+    border-top: rgb(116, 116, 116) solid 1px;
+}
+
+.input-message-area > input{
+    background-color: #EEEBEB;
+    width: 80%;
+    float: left;
+    border: none;
+    border-bottom: rgb(116, 116, 116) solid 1px;
+    padding: 10px 10px;
+    font-size: 15px;
+    
+}
+
+/* .input-message-area button{
+    margin: -5px 10px;
+} */
+
+.message-line{
+    float: left;
+    display: block;
+    width: 100%;
+}
+
+.message{
+    min-height: 30px;
+    padding: 10px;
+    display: inline-block;
+    margin: 10px 20px;
+    background-color: green;
+    border-radius: 15px;
+    border-bottom-left-radius: 3px;
+    font-size: 18px;
+    color: white;
+
+    max-width: 60%;
+}
+
+.message > img{
+    max-width: 100%;
+    max-height: auto;
+}
+
+.non-background{
+    background: none !important;
+}
+
+.right{
+    float: right;
+    border-radius: 15px;
+    border-bottom-right-radius: 3px;
+    background-color: rgb(235, 108, 235);
+}
+
+.fri > span{
+    font-size: 11px;
+    color: rgb(153, 155, 155);
+}
+.avatar{
+    margin-top: 20px;
+    height:80px;
+    width: 80px;
+    border: solid 1px rgb(116, 116, 116);
+    border-radius: 40px;
+}
+
+.frie-avatar > img{
+    width: 80%;
+    height: 80%;
+    margin: 10px 10px;
+}
+.frie-username{
+    border-bottom: solid 1px #979797;
+    text-align: center;
+}
+.frie-username > span{
+    color: #9D9292;
+}
+
+
+

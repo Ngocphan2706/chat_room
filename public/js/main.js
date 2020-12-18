@@ -22,9 +22,10 @@ $(document).ready(() =>{
     });
 
     document.getElementById("image-input").addEventListener("change", function(){
-        
 		onLoadedImage();
-	});
+    });
+    
+    socket.emit("login", document.getElementById("my-username").innerText)
 })
 
 
@@ -38,6 +39,18 @@ socket.on("chat", message =>{
             </div>
         `)
 })
+
+socket.on("update_online", data =>{
+    console.log(data)
+})
+
+function sendMessage(destinaion, message){
+    let data = {
+        receiver: destinaion,
+        message: message
+    }
+    socket.emit("message", data)
+}
 
 function onLoadedImage(){
     console.log("alo alo")

@@ -4,8 +4,10 @@ var app = require('express')();
 var session = require('express-session')
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var siofu = require("socketio-file-upload");
 
 app.use(bodyParser.json());
+app.use(siofu.router);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
@@ -14,22 +16,24 @@ app.use(session({
         resave: true, 
         saveUninitialized: true, 
         secret: 'somesecret', 
-        cookie: { maxAge: 60000 }
+        cookie: { maxAge: 600000 }
     })
 );
-
 
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "12345678",
     database: "chatroom"
-  });
+});
 
-  con.connect(function(err) {
+con.connect(function(err) {
     if (err) throw err;
     console.log("Connected!!!")
-  });
+});
+
+onlineUserList = []
+onlineSocketList = []
 
 //tạo web server
 var http = require('http').createServer(app);
@@ -45,10 +49,9 @@ http.listen(PORT, err => {
 });
 
 app.use(express.static('public')); // để khai báo thư mục 
-app.get('/chat', (req, res)=>{
+app.get('/home', (req, res)=>{
     if(typeof req.session.user !== "undefined" && req.session.user !== null){
-        console.log(req.session.user)
-        res.render('chat.html', {name: req.session.user.name});
+        res.render('home.html', {name: req.session.user.name, username:req.session.user.username, img: req.session.user.img});
     }
     else{
         res.redirect("/login")
@@ -59,6 +62,7 @@ app.get('/chat', (req, res)=>{
 app.get('/login', (req, res)=>{
     res.sendFile(__dirname + '/public/login.html');
 });
+
 app.post('/login', (req, res)=>{
     let username = req.body.username;
     let password = req.body.password;
@@ -69,15 +73,16 @@ app.post('/login', (req, res)=>{
         else {
             req.session.user = {
                 id: result[0].id,
-                name: result[0].name
+                name: result[0].name,
+                username: result[0].username,
+                img: result[0].avatar
             }
-            res.redirect('/chat');
+            onlineUserList[result[0].username] = result[0]
+            res.redirect('/home');
         }
         
     })
 });
-//gửi hình
-
 
 app.get('/register', (req, res)=>{
     res.sendFile(__dirname + '/public/register.html');
@@ -96,14 +101,34 @@ app.post('/register', (req, res)=>{
         else res.redirect('/login');
     })
 });
+
+app.post('/get-chat-info', (req, res) => {
+    let receiver = req.body.username;
+    let sender = req.session.user.username;
+
+    let sql = "SELECT * FROM chat WHERE (user_1 LIKE ? AND user_2 LIKE ?) OR (user_1 LIKE ? AND user_2 LIKE ?)";
+    con.query(sql, [sender, receiver, receiver, sender], (err, result) =>{
+        if(err) res.send(err)
+        else{
+            console.log(result)
+        }
+    })
+})
 // sự kiên lắng nghe client connect
 io.on('connection', (socket)=> {
-    console.log('a user connected'); 
+    console.log(socket.id + " connected!!"); 
 
     // lắng nghe client gửi dữ liệu ở event tên message
     socket.on("message", (message) => {
-        console.log("RECIVE MESSAGE: "+ message);
-        socket.broadcast.emit("chat", message)
+        
     })
 
+    socket.on("login", username => {
+        onlineSocketList[username] = {
+            "id" : socket.id,
+            "socket": socket,
+        }
+    }) 
+
+    socket.broadcast.emit("update_online", "onlineUserList")
 })
