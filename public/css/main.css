@@ -76,8 +76,8 @@ button{
 }
 
 button:focus, input:focus{
-    border: none;
-    outline: none;
+    border: none  !important;
+    outline: none !important;
 }
 
 button:hover{

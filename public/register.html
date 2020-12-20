@@ -17,7 +17,7 @@
         <div class="Reg-container">
             <b>Create Your Free Account</b>
             <p>Already have an account? <a href="login.html">Login</a></p>
-            <form action="register" method="post">
+            <form action="register" enctype="multipart/form-data" method="post">
                 <div class="user">
                     <div class="form-group text">
                         <p>Fullname</p>
@@ -26,19 +26,20 @@
                     </div>
 
                    <div class="form-group text">
-                    <p>Username</p>
-                    <i class="fas fa-user"></i>
-                    <input name="username" type="text" class="form-control" >
+                        <p>Username</p>
+                        <i class="fas fa-user"></i>
+                        <input name="username" type="text" class="form-control" >
                     </div>
+
                     <div class="form-group text">
-                    <p>Password</p>
-                    <i class="fas fa-lock"></i>
-                    <input name="password" type="password" class="form-control">
+                        <p>Password</p>
+                        <i class="fas fa-lock"></i>
+                        <input name="password" type="password" class="form-control">
                     </div>
+
                     <div class="form-group text">
-                    <p>Password authentication</p>
-                    <i class="fas fa-lock"></i>
-                    <input name="password2" type="password" class="form-control">
+                        <p>Avatar</p>
+                        <input name="avatar" type="file" class="form-control">
                     </div>
                 </div>
                 <div class="button-reg">
