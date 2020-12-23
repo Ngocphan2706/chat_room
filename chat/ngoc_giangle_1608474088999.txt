@@ -1,0 +1,1 @@
+[{"from":"ngoc","type":"message","message":"dadsadas"},{"from":"ngoc","type":"image","filename":"Ảnh chụp Màn hình 2020-12-18 lúc 00.51.38.png","message":"ngoc_giangle/Ảnh chụp Màn hình 2020-12-18 lúc 00.51.38.png"},{"from":"giangle","type":"message","message":"hshadjsahd"}]

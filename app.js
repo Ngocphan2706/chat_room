@@ -10,6 +10,7 @@ const formidable = require("formidable");
 const { executeQuery } = require('./utils/sql');
 const { query } = require('express');
 const { type } = require('os');
+const fs = require('fs');
 const { makeFolderUpload, readFileAsBase64 } = require('./utils/upload-file')
 const BASE_URL = 'http://localhost:3000'
 
