@@ -1,21 +1,21 @@
+/* eslint-disable indent */
 const fs = require('fs');
 
-const uploadDir = 'uploads'
+const uploadDir = 'uploads';
 
-function makeFolderUpload(dir){
-    let path = `${uploadDir}/${dir}`;
-    if(!fs.existsSync(path)) {
-        fs.mkdirSync(path)
+function makeFolderUpload(dir) {
+    const path = `${uploadDir}/${dir}`;
+    if (!fs.existsSync(path)) {
+        fs.mkdirSync(path);
     }
     return path;
 }
 
-function readFileAsBase64(path){
-    let data = fs.readFileSync(path, {encoding: 'base64'});
-    return data;
+function readFileAsBase64(path) {
+    return fs.readFileSync(path, { encoding: 'base64' });
 }
 
 module.exports = {
     makeFolderUpload,
-    readFileAsBase64
-}
+    readFileAsBase64,
+};
