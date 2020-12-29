@@ -8,6 +8,7 @@ const app = require('express')();
 const httpApp = require('http');
 const socketIO = require('socket.io');
 const session = require('express-session');
+// const { Peer } = require("peerjs"
 const bodyParser = require('body-parser');
 const siofu = require('socketio-file-upload');
 const formidable = require('formidable');
@@ -114,8 +115,7 @@ app.get('/call', (req, res) => {
                     else destination = row.user_2;
                     const sqlUser = `SELECT * FROM user WHERE username LIKE ${destination}`;
                 });
-                res.render('call.html', {
-                    name: user.name,
+                res.render('call.ejs', {
                     username: user.username,
                     avatar: user.avatar,
                 });
@@ -159,6 +159,7 @@ app.get('/file/:folder/:fileName', (req, res) => {
 });
 
 let listUserOnline = [];
+let roomMember = []
 // client connect
 io.on('connection', (socket) => {
     const uploader = new siofu();
@@ -257,12 +258,42 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('update online', tmp);
     });
 
+    socket.on('init call', (data) =>{
+        io.to('call').emit('user join', data);
+        socket.emit("init call", roomMember);
+        socket.join('call');
+        let roomer = {
+            id: data.id,
+            username: data.username,
+            socketId: socket.id,
+        }
+        roomMember.push(roomer);
+        
+    })
+
     socket.on('disconnect', (reason) => {
         console.log(reason);
         listUserOnline = userLeave(socket.id);
         if (listUserOnline) {
             const tmp = listUserOnline.map((u) => u.user);
             socket.broadcast.emit('update online', tmp);
+        }
+
+        let leaveMember = null;
+        let leaveMemberIndex = -1;
+        roomMember = roomMember.filter((member, i) => {
+            if(member.socketId === socket.id){
+                leaveMember = member;
+            }
+            else return member
+        });
+        
+        if (leaveMember){
+            
+            socket.to("call").emit("user leave", {
+                username: leaveMember.username,
+                id: leaveMember.id
+            });
         }
     });
 

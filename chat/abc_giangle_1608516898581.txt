@@ -1,1 +1,1 @@
-[]
+[{"from":"giangle","type":"message","message":"sdfg"}]

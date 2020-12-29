@@ -104,7 +104,7 @@ document.getElementById('btn-send').onclick = () => {
 document.getElementById('btn-voice-call').onclick = () =>{
     var newWin = open(`${location.origin}/call`,
         'aloalo',
-        "resizable=yes,width=780,height=200,top="+(screen.height-400)+",left="+(screen.width-840));
+        "resizable=yes,width=1500,height=1000,left="+(screen.width-80));
 }
 
 socket.emit('login', user);
@@ -123,6 +123,8 @@ socket.on('message', (data) => {
         outputMessage(data.message, data.type, false, data.filename);
     }
 });
+
+
 
 socket.on('update online', (data) => {
     onlineBox.innerHTML = '';

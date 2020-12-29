@@ -49,6 +49,9 @@ button > i{
     display: inline;
     float: left;
 }
+.user > b{
+    margin-left: 10px;
+}
 
 .avatar{
     height:80px;
@@ -113,6 +116,7 @@ button > i{
 /* ---------------------------------------------------------- */
 
 .list-inbox{
+    display: none;
     margin-top: 30px;
     width: 100%;
     border-top:solid 1px #000000;
